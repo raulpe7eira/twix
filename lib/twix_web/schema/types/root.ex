@@ -17,13 +17,6 @@ defmodule TwixWeb.Schema.Types.Root do
   end
 
   object :root_mutation do
-    field :add_follower, type: :follower do
-      arg :input, non_null(:add_follower_input)
-
-      resolve &UserResolver.add_follower/2
-      middleware TranslateErrors
-    end
-
     field :add_like_to_post, type: :post do
       arg :id, non_null(:id)
 
@@ -35,6 +28,13 @@ defmodule TwixWeb.Schema.Types.Root do
       arg :input, non_null(:create_post_input)
 
       resolve &PostResolver.create/2
+      middleware TranslateErrors
+    end
+
+    field :add_follower, type: :follower do
+      arg :input, non_null(:add_follower_input)
+
+      resolve &UserResolver.add_follower/2
       middleware TranslateErrors
     end
 
