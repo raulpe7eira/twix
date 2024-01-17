@@ -1,6 +1,8 @@
 defmodule TwixWeb.Schema.Types.User do
   use Absinthe.Schema.Notation
 
+  alias TwixWeb.Resolvers.Post, as: PostResolver
+
   @desc "User logic representation"
   object :user do
     field :id, non_null(:id)
@@ -8,7 +10,12 @@ defmodule TwixWeb.Schema.Types.User do
     field :age, non_null(:integer), description: "Needs to be greater then or equal to 18"
     field :email, non_null(:string)
 
-    field :posts, list_of(:post)
+    field :posts, list_of(:post), description: "Returns posts paginaged" do
+      arg :page, :integer, default_value: 1
+      arg :per_page, :integer, default_value: 10
+
+      resolve &PostResolver.get_posts_by_user/3
+    end
 
     field :followers, list_of(:follower)
     field :followings, list_of(:following)
