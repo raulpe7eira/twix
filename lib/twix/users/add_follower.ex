@@ -1,4 +1,4 @@
-defmodule Twix.Users.Follow do
+defmodule Twix.Users.AddFollower do
   alias Twix.Repo
   alias Twix.Users.Follower
   alias Twix.Users.User
