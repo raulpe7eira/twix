@@ -58,6 +58,11 @@ defmodule TwixWeb.Schema.Types.Root do
       config fn _args, _ctx ->
         {:ok, topic: "new_follow_topic"}
       end
+
+      trigger :add_follower,
+        topic: fn _ctx ->
+          ["new_follow_topic"]
+        end
     end
   end
 end
