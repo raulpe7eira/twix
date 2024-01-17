@@ -2,6 +2,8 @@ defmodule TwixWeb.Schema.Types.Root do
   use Absinthe.Schema.Notation
 
   alias Crudry.Middlewares.TranslateErrors
+  alias Twix.Repo
+  alias Twix.Users.User
   alias TwixWeb.Resolvers.Post, as: PostResolver
   alias TwixWeb.Resolvers.User, as: UserResolver
 
@@ -13,6 +15,12 @@ defmodule TwixWeb.Schema.Types.Root do
       arg :id, non_null(:id)
 
       resolve &UserResolver.get/2
+    end
+
+    field :users, list_of(:user) do
+      resolve fn _args, _ctx ->
+        {:ok, Repo.all(User)}
+      end
     end
   end
 
