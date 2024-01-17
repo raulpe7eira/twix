@@ -9,6 +9,26 @@ defmodule TwixWeb.Schema.Types.User do
     field :email, non_null(:string)
 
     field :posts, list_of(:post)
+
+    field :followers, list_of(:follower)
+    field :followings, list_of(:following)
+  end
+
+  @desc "Follower logic representation"
+  object :follower do
+    field :follower_id, non_null(:id)
+    field :follower, non_null(:user)
+  end
+
+  @desc "Following logic representation"
+  object :following do
+    field :following_id, non_null(:id)
+    field :following, non_null(:user)
+  end
+
+  input_object :add_follower_input do
+    field :user_id, non_null(:id)
+    field :follower_id, non_null(:id)
   end
 
   input_object :create_user_input do
