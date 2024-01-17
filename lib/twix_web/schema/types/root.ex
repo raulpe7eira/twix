@@ -31,7 +31,7 @@ defmodule TwixWeb.Schema.Types.Root do
       middleware TranslateErrors
     end
 
-    field :add_follower, type: :follower do
+    field :add_follower, type: :follower_response do
       arg :input, non_null(:add_follower_input)
 
       resolve &UserResolver.add_follower/2
@@ -50,6 +50,14 @@ defmodule TwixWeb.Schema.Types.Root do
 
       resolve &UserResolver.update/2
       middleware TranslateErrors
+    end
+  end
+
+  object :root_subscription do
+    field :new_follow, :follower_response do
+      config fn _args, _ctx ->
+        {:ok, topic: "new_follow_topic"}
+      end
     end
   end
 end

@@ -16,14 +16,17 @@ defmodule TwixWeb.Schema.Types.User do
 
   @desc "Follower logic representation"
   object :follower do
-    field :follower_id, non_null(:id)
     field :follower, non_null(:user)
   end
 
   @desc "Following logic representation"
   object :following do
-    field :following_id, non_null(:id)
     field :following, non_null(:user)
+  end
+
+  object :follower_response do
+    field :follower_id, non_null(:id)
+    field :following_id, non_null(:id)
   end
 
   input_object :add_follower_input do
