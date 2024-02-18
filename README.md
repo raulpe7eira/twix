@@ -1,6 +1,6 @@
 # Twix
 
-This code corresponding to the [Crie APIs GraphQL com Elixir e Absinthe by Rafael Camarda](https://www.udemy.com/course/elixir-graphql) lab.
+This code corresponds to the [Crie APIs GraphQL com Elixir e Absinthe Course](https://www.udemy.com/course/elixir-graphql) lab by [Rafael Camarda](https://cursos.rafaelcamarda.com/).
 
 > The project simulates a twitter, where it's possible to register a user, add follower, send posts, and like posts.
 
